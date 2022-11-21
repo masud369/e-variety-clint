@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -61,8 +62,10 @@ const handelUploadImg = (e)=>{
 
 }
 
+const [loginUser, setLoginUser] = useContext(UserContext);
+
   const onSubmit = (data) => {
-    const productDetails = {name:data.name,weight:data.weight,price:data.price,imageUrl:imgUrl}
+    const productDetails = {name:data.name,weight:data.weight,price:data.price,imageUrl:imgUrl,email:loginUser.email}
     console.log(productDetails);
     fetch(`http://localhost:4400/addproducts`,{
         method:"POST",

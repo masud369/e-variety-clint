@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../App';
 import Products from '../Products/Products';
 import SearchBar from '../SearchBar/SearchBar';
 import  './Home.css';
 
 
 const Home = () => {
-
+    const [loginUser,setLoginUser] = useContext(UserContext);
     const [products, setProducts] = useState([]);
 
 
@@ -28,6 +29,7 @@ const Home = () => {
                 
             }
             </div>
+            <h2>{loginUser.name}</h2>
             </div>
         </div>
     );

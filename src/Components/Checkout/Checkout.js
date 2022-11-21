@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from '../../App';
+
 
 const Checkout = () => {
   const [orders, setOrders] = useState([]);
-
+  const [loginUser,setLoginUser] = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:4400/getorder")
+    fetch("http://localhost:4400/getorder?email="+loginUser.email)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);

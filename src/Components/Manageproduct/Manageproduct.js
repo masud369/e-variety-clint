@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -66,10 +67,10 @@ const handelButton = (e)=>{
 
 //api calling
 const [products, setProducts] = React.useState([]);
-
+const [loginUser, setLoginUser] = useContext(UserContext);
 
     React.useEffect(()=>{
-        fetch("http://localhost:4400/allproducts")
+        fetch("http://localhost:4400/wonproducts?email="+loginUser.email)
         .then(res=>res.json())
         .then(data=>{
             setProducts(data)
