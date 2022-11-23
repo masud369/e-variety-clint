@@ -6,13 +6,28 @@ const Checkout = () => {
   const [orders, setOrders] = useState([]);
   const [loginUser,setLoginUser] = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:4400/getorder?email="+loginUser.email)
+    fetch("http://localhost:4400/getorder?email="+loginUser.email,{
+      method:"GET",
+      headers:  {
+       "Content-Type":"application/json",
+       authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      
+       }
+})
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
         console.log(data);
       })
-  }, []);
+
+
+  },[]);
+//   const pInfo = JSON.parse(sessionStorage.getItem('porductInfo'));
+
+// setOrders(pInfo);
+
+// console.log(orders)
+
 
 const totalPrice = (porders)=>{
   return <div>
@@ -46,7 +61,7 @@ const totalPrice = (porders)=>{
               <span style={{ width: "30%" }}>{order.price}</span>
             </h5>
           </div>
-        ))}
+       ))} 
         <h5
           style={{
             display: "flex",

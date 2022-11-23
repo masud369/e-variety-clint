@@ -14,13 +14,17 @@ export default function Products({ product }) {
 const handelorder = (p)=>{
     console.log({p});
 
-    const productDetails = {name:p.name,weight:p.weight,imgeUrl:p.imageUrl,price:p.price,email:loginUser.email}
+    const productDetails = {name:p.name,weight:p.weight,imgeUrl:p.imageUrl,price:p.price,email:loginUser.email,userName:loginUser.displayName}
+    // sessionStorage.setItem("porductInfo",JSON.stringify(productDetails));
     fetch('http://localhost:4400/order',{
         method:'POST',
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(productDetails)
     })
     navigate("/checkout")
+
+
+    // console.log(productDetails);
 }
 
   return (

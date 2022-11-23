@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../App';
 import Products from '../Products/Products';
 import SearchBar from '../SearchBar/SearchBar';
+import Spineer from '../Spineer/Spineer';
 import  './Home.css';
 
 
@@ -22,10 +23,22 @@ const Home = () => {
             <div className="searchContainer"> 
             <SearchBar style={{display:'block',margin:'0 auto'}} />
             </div>
+            <div className='spneerContainer' style={{margin:'0 auto',textAlign:'center'}} id="spineer"> 
+                <Spineer/>
+            </div>
+            
+             <div style={{display:'none'}}>
+             {products.length && (document.getElementById("spineer").style.display = "none")}
+             </div>
+            
             <div className="container">
             <div className="row">
             { 
-                products.map(product=><Products key={product._id} product={product}/>)
+                products.map((product)=>(
+                   
+                    <Products key={product._id} product={product}/>
+                   
+                ))
                 
             }
             </div>

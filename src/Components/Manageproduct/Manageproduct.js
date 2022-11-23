@@ -70,13 +70,20 @@ const [products, setProducts] = React.useState([]);
 const [loginUser, setLoginUser] = useContext(UserContext);
 
     React.useEffect(()=>{
-        fetch("http://localhost:4400/wonproducts?email="+loginUser.email)
+        fetch("http://localhost:4400/wonproducts?email="+loginUser.email,{
+          method:"GET",
+          headers:{
+            "Content-Type":"application/json",
+            authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          
+          }
+        })
         .then(res=>res.json())
         .then(data=>{
             setProducts(data)
-            console.log(data);
         })
     },[])
+
 
 const handelDelete =(id)=>{
   fetch(`http://localhost:4400/product/${id}`,{method:"DELETE"})
